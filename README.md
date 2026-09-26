@@ -7,7 +7,7 @@ FitLog is a dark-themed fitness companion web application built with **Next.js (
 ## Project Links
 
 - **Repository**: [https://github.com/nipun-roy/fit-log](https://github.com/nipun-roy/fit-log)
-- **Live Demo**: [Deploying on Vercel - Link will be updated here]
+- **Live Demo**: [https://fit-log-ecru-two.vercel.app](https://fit-log-ecru-two.vercel.app)
 
 ---
 
