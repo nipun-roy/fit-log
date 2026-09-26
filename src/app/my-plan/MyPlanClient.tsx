@@ -343,7 +343,7 @@ export const MyPlanClient: React.FC = () => {
                   {/* Thumbnail */}
                   <div className="relative w-24 sm:w-32 aspect-[16/10] rounded-xl overflow-hidden bg-[#1c202b] shrink-0 border border-[#232733]">
                     <Image
-                      src={item.image || "/hero-figure.png"}
+                      src="/workout-figma.png"
                       alt={item.name}
                       fill
                       sizes="128px"
