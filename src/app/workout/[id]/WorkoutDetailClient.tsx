@@ -76,7 +76,7 @@ export const WorkoutDetailClient: React.FC<{ workout: Workout }> = ({ workout })
             )}
 
             <Image
-              src="/workout-figma.png"
+              src={imageError ? "/hero-figure.png" : workout.image}
               alt={workout.name}
               fill
               priority

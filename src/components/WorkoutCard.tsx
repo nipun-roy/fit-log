@@ -27,7 +27,7 @@ export const WorkoutCard: React.FC<{ workout: Workout }> = ({ workout }) => {
         )}
 
         <Image
-          src="/workout-figma.png"
+          src={imageError ? "/hero-figure.png" : workout.image}
           alt={workout.name}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
