@@ -14,11 +14,7 @@ import {
   X,
   ChevronDown,
   ArrowRight,
-  Plus,
   Calendar,
-  CheckCircle2,
-  Trash2,
-  Search,
 } from "lucide-react";
 import confetti from "canvas-confetti";
 
@@ -91,20 +87,8 @@ export const MyPlanClient: React.FC = () => {
     return list;
   }, [saved, sortBy]);
 
-  // Search in My Plan
-  const [planSearchQuery, setPlanSearchQuery] = useState("");
-
-  const currentList = useMemo(() => {
-    const base = activeTab === "today" ? sortedPlan : sortedSaved;
-    if (!planSearchQuery.trim()) return base;
-    const q = planSearchQuery.toLowerCase();
-    return base.filter(
-      (item) =>
-        item.name.toLowerCase().includes(q) ||
-        item.equipment.toLowerCase().includes(q) ||
-        item.muscleGroups?.some((m) => m.toLowerCase().includes(q))
-    );
-  }, [activeTab, sortedPlan, sortedSaved, planSearchQuery]);
+  // Current active list (sorted by selected option)
+  const currentList = activeTab === "today" ? sortedPlan : sortedSaved;
 
   const handleMarkAsDone = (id: number) => {
     toggleCompletePlan(id);
@@ -209,42 +193,21 @@ export const MyPlanClient: React.FC = () => {
           </button>
         </div>
 
-        {/* Right Controls: Search and Sort */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        {/* Right side: Sort By dropdown matching Figma */}
+        <div className="relative flex items-center justify-end gap-2">
+          <span className="text-xs sm:text-sm text-gray-400">Sort By</span>
           <div className="relative">
-            <Search className="w-3.5 h-3.5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
-              value={planSearchQuery}
-              onChange={(e) => setPlanSearchQuery(e.target.value)}
-              placeholder="Filter current lifts..."
-              className="w-full sm:w-44 bg-[#15171d] border border-[#232733] focus:border-[#ccff00] text-xs text-white placeholder-gray-500 rounded-xl pl-8 pr-3 py-2 outline-none transition-all"
-            />
-            {planSearchQuery && (
-              <button
-                onClick={() => setPlanSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] text-gray-500 hover:text-white"
-              >
-                ✕
-              </button>
-            )}
-          </div>
-
-          {/* Sort Dropdown */}
-          <div className="relative flex items-center justify-end gap-2">
-            <span className="text-xs sm:text-sm text-gray-400">Sort By</span>
-            <div className="relative">
-              <button
-                onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#15171d] border border-[#232733] hover:border-gray-500 text-xs sm:text-sm font-medium text-white transition-colors"
-              >
-                <span>{getSortLabel(sortBy)}</span>
-                <ChevronDown
-                  className={`w-4 h-4 text-gray-400 transition-transform ${
-                    sortDropdownOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+            <button
+              onClick={() => setSortDropdownOpen(!sortDropdownOpen)}
+              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#15171d] border border-[#232733] hover:border-gray-500 text-xs sm:text-sm font-medium text-white transition-colors"
+            >
+              <span>{getSortLabel(sortBy)}</span>
+              <ChevronDown
+                className={`w-4 h-4 text-gray-400 transition-transform ${
+                  sortDropdownOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
 
             {sortDropdownOpen && (
               <div className="absolute right-0 top-full mt-2 w-44 rounded-xl bg-[#181a22] border border-[#2a2f3e] shadow-2xl py-1.5 z-30">
@@ -294,7 +257,6 @@ export const MyPlanClient: React.FC = () => {
             )}
           </div>
         </div>
-      </div>
       </div>
 
       {/* Loading state */}

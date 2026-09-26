@@ -15,8 +15,7 @@ FitLog is a dark-themed fitness companion web application built with **Next.js (
 
 1. **Responsive Workout Library Grid**
    - Displays all exercises fetched from the FitLog API in a responsive 3-column grid on desktop and single-column on mobile.
-   - Includes real-time search by workout name, equipment, or muscle group.
-   - Quick category filter chips to filter by muscle groups (Chest, Arms, Back, Legs, Core, Shoulders).
+   - Highlights muscle group tags, equipment, duration, calories burned, and ratings on every workout card.
    - Animated skeleton loading cards while data is being fetched.
 
 2. **Workout Details Page**
