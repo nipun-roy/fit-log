@@ -295,6 +295,7 @@ export const MyPlanClient: React.FC = () => {
           </div>
         </div>
       </div>
+      </div>
 
       {/* Loading state */}
       {!isLoaded ? (
